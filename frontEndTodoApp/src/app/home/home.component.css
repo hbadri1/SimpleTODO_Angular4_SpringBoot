@@ -1,0 +1,9 @@
+
+.doneClass{
+    color: green;
+    font-weight: bold;
+}
+.pendingClass{
+    color: orange;
+    font-weight: bold;
+}

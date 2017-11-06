@@ -1,0 +1,30 @@
+<div class="container">
+  <ul class="list-group">
+    <li *ngFor="let task of tasks" class="list-group-item clearfix">
+      <input type="checkbox" style="margin-right: 10px" [(ngModel)]="task.done" (change)="updateTask(task)" [disabled]="isUpdating"> {{task.value}} (
+      <span [ngClass]="task.done? 'doneClass': 'pendingClass'">{{task.done? 'Done': 'Pending'}}</span>)
+      <button class="btn btn-danger pull-right" (click)="removeTask(task)">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </li>
+    <li class="list-group-item">
+      <form [formGroup]="addTaskForm" novalidate (ngSubmit)="createTask()">
+        <fieldset>
+          <div class="input-group">
+            <div [ngClass]="{
+            'has-success': addTaskForm.controls.newTaskValue.valid && addTaskForm.controls.newTaskValue.dirty
+          }">
+              <input formControlName="newTaskValue" type="text" placeholder="New task" class="form-control"
+              [(ngModel)]="newTask">
+            </div>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit" [disabled]="addTaskForm.controls.newTaskValue.invalid">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </span>
+          </div>
+        </fieldset>
+      </form>
+    </li>
+  </ul>
+</div>
